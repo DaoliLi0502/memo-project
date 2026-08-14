@@ -14,7 +14,7 @@ const userSchema = yup.object({
 
 router.post('/', async (req, res) => {
     try {
-        const { name, password} = await userSchema.validate(req.body);
+        const { name, password } = await userSchema.validate(req.body);
 
         const db = await dbPromise;
 
@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
 
         return res.status(201).json({
             id: result.lastID,
-            name
+            name: name
         });
     } catch (error) {
         return res.status(400).json({
