@@ -3,6 +3,7 @@ const dbPromise = require('../../db');
 const yup = require('yup');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
+const sessions = require('../../sessions');
 
 const router = express.Router();
 
@@ -10,8 +11,6 @@ const authSchema = yup.object({
     name: yup.string().required(),
     password: yup.string().required()
 });
-
-const sessions = new Map();
 
 router.post('/', async (req, res) => {
     try {
