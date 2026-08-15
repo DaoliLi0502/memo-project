@@ -61,4 +61,16 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.delete('/', (req, res) => {
+    const sessionId = req.cookies.session;
+
+    if (sessionId) {
+        sessions.delete(sessionId);
+    }
+
+    res.clearCookie('session');
+
+    return res.status(204).send();
+})
+
 module.exports = router;
