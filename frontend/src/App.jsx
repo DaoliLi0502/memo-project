@@ -1,7 +1,7 @@
-import Login from './pages/Login'
+import MemoForm from './components/MemoForm'
 
 function App() {
-  return <Login />
+    return <MemoForm />
 }
 
 export default App
