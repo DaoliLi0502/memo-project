@@ -1,6 +1,7 @@
 import Login from './pages/Login'
 import MemoForm from './components/MemoForm'
 import MemoList from './components/MemoList'
+import Signup from './pages/Signup'
 import { useState } from 'react'
 
 function App() {
@@ -9,6 +10,8 @@ function App() {
 
     return (
         <>
+            <Signup />
+            
             {!isLoggedIn && <Login onLogin={() => setIsLoggedIn(true)} />}
 
             {isLoggedIn && (
