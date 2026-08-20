@@ -21,10 +21,13 @@ router.post('/', authMiddleware, async (req, res) => {
             [req.userId, content, due_at]
         );
 
+        const memo = await db.get(
+            'SELECT * FROM memos WHERE id = ? AND user_id = ?',
+            [result.lastID, req.userId]
+        );
+
         return res.status(201).json({
-            id: result.lastID,
-            content: content,
-            due_at: due_at
+            memo: memo
         });
     } catch (error) {
         return res.status(400).json({

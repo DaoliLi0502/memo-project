@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function Login() {
+function Login({ onLogin }) {
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
 
@@ -23,6 +23,10 @@ function Login() {
 
         console.log(response.status)
         console.log(data)
+
+        if (response.ok) {
+            onLogin()
+        }
     }
 
     return (
