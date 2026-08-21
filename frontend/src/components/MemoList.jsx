@@ -18,6 +18,36 @@ function MemoList({ newMemo }) {
         }
     }
 
+    async function handleComplete(id, completed) {
+        const response = await fetch(`http://localhost:3000/memos/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                completed: !completed
+            })
+        })
+        
+        const data = await response.json()
+
+        console.log(response.status)
+        console.log(data)
+
+        if (response.ok) {
+            setMemos((memos) => {
+                return memos.map((memo) => {
+                    if (memo.id === id) {
+                        return data.memo
+                    }
+
+                    return memo
+                })
+            })
+        }
+    }
+
     useEffect(() => {
         async function getMemos() {
             const response = await fetch('http://localhost:3000/memos', {
@@ -51,9 +81,9 @@ function MemoList({ newMemo }) {
                         <p>Created: {memo.created_at}</p>
                         <p>Due: {memo.due_at}</p>
                         <p>Status: {memo.completed ? 'Completed' : 'Not completed'}</p>
-                        <p>Complete</p>
-                        <p>Edit</p>
-                        <p onClick={() => handleDelete(memo.id)}>Delete</p>
+                        <button onClick={() => handleComplete(memo.id, memo.completed)}>{memo.completed ? 'Uncomplete' : 'Complete'}</button>
+                        <button>Edit</button>
+                        <button onClick={() => handleDelete(memo.id)}>Delete</button>
                     </div>
                 )
             })}
