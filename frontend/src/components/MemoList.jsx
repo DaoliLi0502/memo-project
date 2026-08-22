@@ -77,7 +77,7 @@ function MemoList({ newMemo }) {
                     if (memo.id === id) {
                         return data.memo
                     }
-                    
+
                     return memo
                 })
             })
@@ -117,7 +117,7 @@ function MemoList({ newMemo }) {
                             <div>
                                 <form onSubmit={(e) => {
                                     e.preventDefault()
-                                    handleSubmit(memo.id)
+                                    handleEdit(memo.id)
                                 }}>
                                     <input
                                         type="text"
