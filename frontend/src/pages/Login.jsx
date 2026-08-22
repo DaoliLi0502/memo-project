@@ -4,10 +4,13 @@ import { useState } from "react"
 function Login() {
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
     const navigate = useNavigate()
 
     async function handleSubmit(e) {
         e.preventDefault()
+
+        setError('')
 
         const response = await fetch('http://localhost:3000/auth', {
             method: 'POST',
@@ -28,6 +31,8 @@ function Login() {
 
         if (response.ok) {
             navigate('/memos')
+        } else {
+            setError(data.error)
         }
     }
 
@@ -53,6 +58,8 @@ function Login() {
                 <button type="submit">
                     Login
                 </button>
+
+                {error && <p>{error}</p>}
 
                 <Link to='/signup'>
                     Sign up

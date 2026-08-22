@@ -4,10 +4,13 @@ import { Link, useNavigate } from "react-router-dom"
 function Signup() {
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
     const navigate = useNavigate()
 
     async function handleSubmit(e) {
         e.preventDefault()
+
+        setError('')
 
         const response = await fetch('http://localhost:3000/users', {
             method: 'POST',
@@ -27,6 +30,8 @@ function Signup() {
 
         if (response.ok) {
             navigate('/login')
+        } else {
+            setError(data.error)
         }
     }
 
@@ -51,6 +56,8 @@ function Signup() {
             <button type="submit">
                 Sign Up
             </button>
+
+            {error && <p>{error}</p>}
 
             <Link to='/login'>
                 Login
