@@ -36,7 +36,7 @@ function Signup() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="auth-form" onSubmit={handleSubmit}>
             <h2>Sign Up</h2>
 
             <input
@@ -57,7 +57,7 @@ function Signup() {
                 Sign Up
             </button>
 
-            {error && <p>{error}</p>}
+            {error && <p className="error">{error}</p>}
 
             <Link to='/login'>
                 Login

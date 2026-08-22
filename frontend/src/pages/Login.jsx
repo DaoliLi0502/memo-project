@@ -40,7 +40,7 @@ function Login() {
         <div>
             <h1>Login</h1>
 
-            <form onSubmit={handleSubmit}>
+            <form className="auth-form" onSubmit={handleSubmit}>
                 <input
                     type="text"
                     placeholder="Name"
@@ -59,7 +59,7 @@ function Login() {
                     Login
                 </button>
 
-                {error && <p>{error}</p>}
+                {error && <p className="error">{error}</p>}
 
                 <Link to='/signup'>
                     Sign up

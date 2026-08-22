@@ -1,111 +1,378 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+    --text: #5f6470;
+    --text-h: #1f2430;
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --border: #e5e7eb;
+    --accent: #7c3aed;
+    --accent-hover: #6d28d9;
+    --accent-bg: #f3eefe;
+    --danger: #dc2626;
+    --danger-bg: #fef2f2;
+    --shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--bg);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+* {
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
+    margin: 0;
+    min-width: 320px;
+    background: var(--bg);
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+    width: 100%;
+    min-height: 100vh;
+}
+
+h1,
+h2,
+p {
+    margin: 0;
 }
 
 h1,
 h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+    color: var(--text-h);
 }
 
 h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.6px;
 }
+
 h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
     font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+    font-weight: 650;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+button,
+input {
+    font: inherit;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+button {
+    cursor: pointer;
+}
+
+.auth-form {
+    width: 420px;
+    max-width: calc(100% - 32px);
+    margin: 100px auto;
+    padding: 36px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+}
+
+.auth-form h2 {
+    margin-bottom: 28px;
+    text-align: center;
+    font-size: 26px;
+    color: var(--text-h);
+}
+
+.auth-form input {
+    display: block;
+    width: 100%;
+    height: 46px;
+    margin-bottom: 16px;
+    padding: 0 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-h);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.auth-form input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+.auth-form button {
+    width: 100%;
+    height: 46px;
+    margin-top: 4px;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent);
+    color: white;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.auth-form button:hover {
+    background: var(--accent-hover);
+}
+
+.auth-form button:active {
+    transform: translateY(1px);
+}
+
+.auth-form p {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.auth-form .error {
+    margin: 0 0 16px;
+    color: var(--danger);
+    text-align: left;
+    font-size: 14px;
+}
+
+.auth-form a {
+    color: var(--accent);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.auth-form a:hover {
+    text-decoration: underline;
+}
+
+.memos-page {
+    width: 760px;
+    max-width: calc(100% - 32px);
+    margin: 0 auto;
+    padding: 50px 0 80px;
+    text-align: left;
+}
+
+.memos-page h1 {
+    display: inline-block;
+    margin-bottom: 36px;
+}
+
+.memos-page > a {
+    float: right;
+    margin-top: 2px;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.memos-page > a:hover {
+    background: var(--accent-bg);
+    border-color: #d8c9f7;
+    color: var(--accent);
+}
+
+.memos-page > h2 {
+    clear: both;
+    margin: 0 0 14px;
+    font-size: 20px;
+}
+
+.memo-form {
+    margin-bottom: 42px;
+    padding: 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+}
+
+.memo-form h2 {
+    margin-bottom: 18px;
+}
+
+.memo-form input {
+    display: block;
+    width: 100%;
+    height: 46px;
+    margin-bottom: 12px;
+    padding: 0 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-h);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.memo-form input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+.memo-form button {
+    height: 42px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.memo-form button:hover {
+    background: var(--accent-hover);
+}
+
+.memo-form button:active {
+    transform: translateY(1px);
+}
+
+.memo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.memo-list h2 {
+    margin-bottom: 4px;
+}
+
+.memo-item {
+    padding: 20px 22px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.memo-item:hover {
+    border-color: #d9d5e3;
+    box-shadow: var(--shadow);
+}
+
+.memo-item p {
+    margin: 6px 0;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.memo-item p:first-child {
+    margin-bottom: 10px;
+    color: var(--text-h);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.memo-item button {
+    margin-top: 14px;
+    margin-right: 7px;
+    padding: 7px 12px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.memo-item button:hover {
+    background: var(--accent-bg);
+    border-color: #d8c9f7;
+    color: var(--accent);
+}
+
+.memo-item button:first-of-type {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.memo-item button:first-of-type:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: white;
+}
+
+.memo-item button:last-child {
+    color: var(--danger);
+}
+
+.memo-item button:last-child:hover {
+    background: var(--danger-bg);
+    border-color: #fecaca;
+    color: var(--danger);
+}
+
+.memo-item input {
+    display: block;
+    width: 100%;
+    height: 44px;
+    margin-bottom: 10px;
+    padding: 0 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-h);
+    outline: none;
+}
+
+.memo-item input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+.memo-item form button {
+    margin-top: 4px;
+}
+
+.memo-item form button[type="submit"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.memo-item form button[type="submit"]:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+}
+
+.memo-item form button[type="button"] {
+    background: var(--card);
+    color: var(--text);
+}
+
+@media (max-width: 600px) {
+    .auth-form {
+        margin: 50px auto;
+        padding: 26px;
+    }
+
+    .memos-page {
+        padding-top: 30px;
+    }
+
+    .memos-page h1 {
+        font-size: 28px;
+        margin-bottom: 28px;
+    }
+
+    .memo-form {
+        padding: 18px;
+    }
+
+    .memo-item {
+        padding: 16px;
+    }
 }

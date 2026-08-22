@@ -109,12 +109,12 @@ function MemoList({ newMemo }) {
     }, [newMemo])
 
     return (
-        <div>
+        <div className="memo-list">
             <h2>Memos</h2>
 
             {memos.map((memo) => {
                 return (
-                    <div key={memo.id}>
+                    <div className="memo-item" key={memo.id}>
                         {editingId === memo.id && (
                             <div>
                                 <form onSubmit={(e) => {
@@ -142,7 +142,7 @@ function MemoList({ newMemo }) {
                         {editingId !== memo.id && (
                             <div>
                                 <p>Content: {memo.content}</p>
-                                <p>Created: {memo.created}</p>
+                                <p>Created: {memo.created_at}</p>
                                 <p>Due: {memo.due_at}</p>
                             </div>
                         )}
