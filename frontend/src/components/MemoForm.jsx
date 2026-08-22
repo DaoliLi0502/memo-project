@@ -32,7 +32,7 @@ function MemoForm({ onMemoCreated }) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => handleSubmit(e)}>
             <input
                 type="text"
                 placeholder="New memo"
