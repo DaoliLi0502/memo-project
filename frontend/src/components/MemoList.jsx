@@ -3,8 +3,8 @@ import { useEffect, useState } from "react"
 function MemoList({ newMemo }) {
     const [memos, setMemos] = useState([])
     const [editingId, setEditingId] = useState(null)
-    const [editContent, setEditContent] = useState('')
-    const [editDueAt, setEditDueAt] = useState('')
+    const [editingContent, setEditingContent] = useState('')
+    const [editingDueAt, setEditingDueAt] = useState('')
 
     async function handleDelete(id) {
         const response = await fetch(`http://localhost:3000/memos/${id}`, {
@@ -52,7 +52,7 @@ function MemoList({ newMemo }) {
     }
 
     async function handleEdit(id) {
-        const due_at = editDueAt ? editDueAt.replace('T', ' ') + ':00' : null
+        const due_at = editingDueAt ? editingDueAt.replace('T', ' ') + ':00' : null
 
         const response = await fetch(`http://localhost:3000/memos/${id}`, {
             method: 'PATCH',
@@ -61,7 +61,7 @@ function MemoList({ newMemo }) {
             },
             credentials: 'include',
             body: JSON.stringify({
-                content: editContent,
+                content: editingContent,
                 due_at: due_at
             })
         })
@@ -121,14 +121,14 @@ function MemoList({ newMemo }) {
                                 }}>
                                     <input
                                         type="text"
-                                        value={editContent}
-                                        onChange={(e) => setEditContent(e.target.value)}
+                                        value={editingContent}
+                                        onChange={(e) => setEditingContent(e.target.value)}
                                     />
 
                                     <input
                                         type="datetime-local"
-                                        value={editDueAt}
-                                        onChange={(e) => setEditDueAt(e.target.value)}
+                                        value={editingDueAt}
+                                        onChange={(e) => setEditingDueAt(e.target.value)}
                                     />
 
                                     <button type="submit">Save</button>
@@ -148,8 +148,8 @@ function MemoList({ newMemo }) {
                         <button onClick={() => handleComplete(memo.id, memo.completed)}>{memo.completed ? 'Uncomplete' : 'Complete'}</button>
                         <button onClick={() => {
                             setEditingId(memo.id)
-                            setEditContent(memo.content)
-                            setEditDueAt(memo.due_at ? memo.due_at.replace(' ', 'T').slice(0, 16) : '')
+                            setEditingContent(memo.content)
+                            setEditingDueAt(memo.due_at ? memo.due_at.replace(' ', 'T').slice(0, 16) : '')
                         }}>
                             Edit
                         </button>
