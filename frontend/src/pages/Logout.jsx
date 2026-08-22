@@ -1,4 +1,8 @@
-function Logout({ onLogout }) {
+import { useNavigate } from "react-router-dom"
+
+function Logout() {
+    const navigate = useNavigate()
+
     async function handleLogout() {
         const response = await fetch('http://localhost:3000/auth', {
             method: 'DELETE',
@@ -8,7 +12,7 @@ function Logout({ onLogout }) {
         console.log(response.status)
 
         if (response.ok) {
-            onLogout()
+            navigate('/login')
         }
     }
 

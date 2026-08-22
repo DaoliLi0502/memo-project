@@ -1,8 +1,10 @@
 import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 
 function Signup() {
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
+    const navigate = useNavigate()
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -22,6 +24,10 @@ function Signup() {
 
         console.log(response.status)
         console.log(data)
+
+        if (response.ok) {
+            navigate('/login')
+        }
     }
 
     return (
@@ -45,6 +51,11 @@ function Signup() {
             <button type="submit">
                 Sign Up
             </button>
+
+            <Link to='/login'>
+                Login
+            </Link>
+            
         </form>
     )
 }

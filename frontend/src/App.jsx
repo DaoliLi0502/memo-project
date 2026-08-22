@@ -1,28 +1,19 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
-import MemoForm from './components/MemoForm'
-import MemoList from './components/MemoList'
+import Memos from './pages/Memos'
 import Signup from './pages/Signup'
-import { useState } from 'react'
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [newMemo, setNewMemo] = useState(null)
-
     return (
-        <>
-            <Signup />
-
-            {!isLoggedIn && <Login onLogin={() => setIsLoggedIn(true)} />}
-
-            {isLoggedIn && (
-                <>
-                    <Logout onLogout={() => setIsLoggedIn(false)} />
-                    <MemoForm onMemoCreated={setNewMemo} />
-                    <MemoList newMemo={newMemo} />
-                </>
-            )}
-        </>
+        <BrowserRouter>
+            <Routes>
+                <Route path='/login' element={<Login />} />
+                <Route path='/logout' element={<Logout />} />
+                <Route path='/signup' element={<Signup />} />
+                <Route path='/memos' element={<Memos />} />
+            </Routes>
+        </BrowserRouter>
     )
 }
 
