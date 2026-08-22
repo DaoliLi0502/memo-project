@@ -81,6 +81,8 @@ function MemoList({ newMemo }) {
                     return memo
                 })
             })
+
+            setEditingId(null)
         }
     }
 
